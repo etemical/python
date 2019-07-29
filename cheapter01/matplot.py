@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 """ 解决中文显示  方案一： 
-通过字体管理器 然后在需要设置的文字的地方通过 fontproperties 来引用
+通过字体管理器 然后在需要设置的文字的地方通过 fontproperties=myfont 来引用
 比较麻烦不推荐使用
 """
 # import matplotlib.font_manager as fm
-# font = fm.FontProperties(fname=r"C:\Windows\Fonts\msyh.ttc")
+# myfont = fm.FontProperties(fname=r"C:\Windows\Fonts\msyh.ttc")
 """ 解决中文显示  方案二： 动态设置字体 SimHei 黑体 （推荐）"""
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
 plt.rcParams['axes.unicode_minus'] = False  # 解决保存图像是负号'-'显示为方块的问题
