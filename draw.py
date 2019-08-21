@@ -113,3 +113,15 @@ plt.plot([0, 1], [0, 3])
 plt.subplot(2, 3, 6)
 plt.plot([0, 1], [0, 4])
 plt.show()
+
+"""柱状图"""
+
+x = np.linspace(1,100,10)
+
+y = 3 * x
+print(x,y)
+plt.bar(x,height=y,width=8)
+for i , y in enumerate(y):
+    plt.text(x[i],y+5, "%s" % y, ha="center", va="bottom")
+
+plt.show()
