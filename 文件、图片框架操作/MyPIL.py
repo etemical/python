@@ -1,4 +1,4 @@
-from PIL import Image,ImageFilter,ImageFont,ImageColor,ImageDraw
+from PIL import Image,ImageFilter,ImageFont,ImageDraw
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -71,8 +71,10 @@ print(Image.__version__)
 
 # img.show()
 
-"""在matplot里显示"""
-img = Image.open("img/valicode.jpg")
+"""在matplot里显示
+  彩色图片直方图可以把三个颜色的直方图叠加起来
+"""
+img = Image.open("img/valicode.jpg").convert("L")
 plt.subplot(2,1,1)
 plt.axis("off") # 去掉坐标轴
 plt.imshow(img)
