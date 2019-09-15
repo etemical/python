@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import dlib
 
 img = cv2.imread("../img/pic.jpg")
 #
@@ -83,3 +84,37 @@ print(cv2.split(img))
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
 
+#
+#
+# camera = cv2.VideoCapture(0)
+# success , frame = camera.read()
+# while success and cv2.waitKey(1) == -1:
+#     success, frame = camera.read()    # TODO:在此处可放置各种对当前每一帧图像的处理
+#     cv2.imshow("Camera", frame)
+#
+# camera.release()
+# cv2.destroyAllWindows()
+
+
+cameraCapture = cv2.VideoCapture(0)
+success, frame = cameraCapture.read()
+detector = dlib.get_frontal_face_detector()
+predictor = dlib.shape_predictor(    "shape_predictor_68_face_landmarks.dat")
+
+while success and cv2.waitKey(1) == -1:
+    success, frame = cameraCapture.read()
+
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)            #生成灰度图
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))  #生成直方图
+    clahe_image = clahe.apply(gray)
+    detections = detector(clahe_image, 1)
+    for k, d in enumerate(detections):
+        shape = predictor(clahe_image, d)  # 获取坐标
+        for i in range(1, 68):  # 每张脸都有68个识别点
+            cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 1, (0, 0, 255),
+                       thickness=2)
+
+    cv2.imshow("Camera", frame)
+
+cameraCapture.release()
+cv2.destroyAllWindows()
