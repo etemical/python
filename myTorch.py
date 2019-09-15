@@ -20,7 +20,7 @@ print(b)
 
 print(a @ b)
 
-# print(torch.dot(a,b))# do只能用于一维向量
+# print(torch.dot(a,b))# dot只能用于一维向量
 print(torch.matmul(a,b))
 print(torch.mm(a,b))  # 数学中的矩阵乘法
 
@@ -45,7 +45,7 @@ print(a.dot(b))  # 向量相乘 ，求内积 这点和numpy一样
 # g.backward()
 # print(y.grad)
 
-
+        
 
 a = torch.tensor([[1.,3.],[2,4]], requires_grad=True)
 print(a)
